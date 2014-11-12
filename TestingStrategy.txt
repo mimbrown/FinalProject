@@ -1,0 +1,45 @@
+Testing Strategy:
+
+-Loading Config Files: This will include the map of the cave system only. Caves will be marked with a single
+	character, indicating which cavern they belong to. Walkways will be marked with a different character, and 
+	the walls will be indicated with another character. Tests for this include making sure the given map adheres
+	all proper regulations and throws up a flag if it doesn't: it is a rectangle, file is valid, and there's at 
+	least one cavern. This should also load the cavern, so different cells will be tested to see if they are 
+	pathways, caverns (and their associated string), and walls. Number of caverns will be tested. 
+
+-Find Route: This is the method that is called on a robot, for it to explore for a route for a given cavern. This method
+	will use a recursive algorithm to fully explore walkways, and when it comes to a cavern which isn't in it's route
+	list, it will add the route to its set of routes. Tests for this will include a straight path to a cavern, a split 
+	path with the other leading to the wrong cavern checked first, a cavern only accessible through another cavern, and
+	a cavern that has no possible route (which is somehow indicated). The most direct route should be obtained (or at
+	least somewhat direct), so the number of steps in the route will also be checked.
+
+-Repeat Route: This is the method that is called on a robot before it attempts to find a route for a given cavern. If it has 
+	the route to a given cavern, or the robot directly behind it has the route, it will take the route to the cavern. This 
+	will be tested by the robot having the route, the robot behind it having the route, the robot 2 behind it having the 
+	route, and no robots having the route.
+
+-Invert Route: This is a method within the route class that will invert a route automatically, so a robot can trace their 
+	steps back to the enterance. Tests for this will make sure that number of steps remains the same, and that certain
+	points chosen at random in the route remain the same.
+
+-Cycle Robots: This is a method within the mine class that will cycle through the current robots. This is a helper method that will
+	be called whenever repeat route is called, and will be tested by finding the current robot after a number of robot 
+	find route, repeat route, and invert route methods. 
+
+Development Strategy:
+
+Part 1:
+
+-Loading Configuration Files: Maze created.
+-Maze setup files: Robot array list created, maze linked with mine class.
+-Robot route finding algorithm: Routes found for first time.
+-Robot follow route/share route methods: Already found routes being shared and followed.
+
+Part 2:
+
+-GUI Maze: Draw the maze and robots.
+-GUI Buttons: Interface for user to tell robots where to go.
+-GUI Animation: Show a robot moving through the maze. Some of this might be moved into part 1, as it is closely linked with the
+	route finding algorithm.
+-GUI FileMenu: Popup window that shows discovered routes.
