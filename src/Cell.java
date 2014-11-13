@@ -5,6 +5,10 @@ public class Cell {
 	private String name;
 	private CellType cellType;
 	
+	public Cell() {
+		
+	}
+	
 	public boolean isPathway() {
 		return cellType == CellType.PATHWAY;
 	}

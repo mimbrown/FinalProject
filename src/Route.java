@@ -5,6 +5,10 @@ public class Route {
 	private ArrayList<Direction> route;
 	private String cavern;
 	
+	public Route() {
+		
+	}
+	
 	public void stepForward(Direction direction) {
 		
 	}
