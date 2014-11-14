@@ -20,7 +20,7 @@ Testing Strategy:
 	route, and no robots having the route.
 
 -Invert Route: This is a method within the route class that will invert a route automatically, so a robot can trace their 
-	steps back to the enterance. Tests for this will make sure that number of steps remains the same, and that certain
+	steps back to the entrance. Tests for this will make sure that number of steps remains the same, and that certain
 	points chosen at random in the route remain the same.
 
 -Cycle Robots: This is a method within the mine class that will cycle through the current robots. This is a helper method that will
@@ -42,4 +42,4 @@ Part 2:
 -GUI Buttons: Interface for user to tell robots where to go.
 -GUI Animation: Show a robot moving through the maze. Some of this might be moved into part 1, as it is closely linked with the
 	route finding algorithm.
--GUI FileMenu: Popup window that shows discovered routes.
+-GUI FileMenu: Pop up window that shows discovered routes.

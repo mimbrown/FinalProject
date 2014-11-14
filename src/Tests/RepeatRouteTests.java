@@ -8,6 +8,7 @@ import java.util.Set;
 
 import maze.Direction;
 import maze.Maze;
+import maze.Mine;
 import maze.Robot;
 import maze.Route;
 
@@ -23,25 +24,16 @@ public class RepeatRouteTests {
 	 * will be tested by the robot having the route, the robot behind it having the route, the robot 2 behind it having the 
 	 * route, and no robots having the route.
 	 */
+	private Mine mine;
 	private ArrayList<Robot> robots;
-	private Maze maze;
 	private ArrayList<Direction> routeToF;
 	private ArrayList<Direction> routeToB;
-	private Robot robot1;
-	private Robot robot2;
-	private Robot robot3;
 	
 	@BeforeClass
 	public void Before() throws AWTException {
-		Maze maze = new Maze("MazeLayout.csv");
-		maze.loadMaze();
-		robots = new ArrayList<Robot>();
-		robot1 = new Robot();
-		robot2 = new Robot();
-		robot3 = new Robot();
-		robots.add(robot1);
-		robots.add(robot2);
-		robots.add(robot3);
+		mine = new Mine("MazeLayout.csv");
+		mine.loadMine();
+		robots = mine.getRobots();
 		
 		routeToF = new ArrayList<Direction>();
 		routeToB = new ArrayList<Direction>();
@@ -81,7 +73,7 @@ public class RepeatRouteTests {
 	// current robot has the route
 	@Test
 	public void RobotHasRoute() {
-		Set<Route> route = robot1.getKnownRoutes();
+		Set<Route> route = robots.get(0).getKnownRoutes();
 		
 		assertTrue(route.contains(routeToF));
 		assertTrue(route.contains(routeToB));
@@ -90,7 +82,7 @@ public class RepeatRouteTests {
 	// robot behind the current robot has the route
 	@Test
 	public void Robot2HasTheRoute() {
-		Set<Route> route = robot2.getKnownRoutes();
+		Set<Route> route = robots.get(1).getKnownRoutes();
 		
 		assertTrue(route.contains(routeToF));
 		assertTrue(route.contains(routeToB));
@@ -99,7 +91,7 @@ public class RepeatRouteTests {
 	// robot 2 behind the current robot has the route
 	@Test
 	public void Robot3HasTheRoute() {
-		Set<Route> route = robot3.getKnownRoutes();
+		Set<Route> route = robots.get(2).getKnownRoutes();
 		
 		assertTrue(route.contains(routeToF));
 		assertTrue(route.contains(routeToB));
@@ -108,9 +100,9 @@ public class RepeatRouteTests {
 	// no robot has the route
 	@Test
 	public void NoRobotHasTheRoute() {
-		Set<Route> route1 = robot1.getKnownRoutes();
-		Set<Route> route2 = robot2.getKnownRoutes();
-		Set<Route> route3 = robot3.getKnownRoutes();
+		Set<Route> route1 = robots.get(0).getKnownRoutes();
+		Set<Route> route2 = robots.get(1).getKnownRoutes();
+		Set<Route> route3 = robots.get(2).getKnownRoutes();
 		
 		assertTrue(route1.contains(routeToF));
 		assertTrue(route1.contains(routeToB));

@@ -11,12 +11,13 @@ public class Robot {
 	private Color color;
 	private String goalCavern;
 	
-	public Robot() {
-		
+	public Robot(int number) {
+		this.number = number;
 	}
 	
-	public void findRoute() {
-		
+	// returns a boolean indicating whether the cavern was able to be found
+	public boolean findRoute() {
+		return false;
 	}
 	
 	public void followRoute() {
