@@ -1,4 +1,4 @@
-package tests;
+package Tests;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,7 @@ import maze.Maze;
 import maze.Robot;
 import maze.Route;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -118,5 +119,54 @@ public class RepeatRouteTests {
 		assertTrue(route3.contains(routeToF));
 		assertTrue(route3.contains(routeToB));
 	}
+	
+	//invert the route to F
+	@Test
+	public void invertRouteToFTests()
+	{
+		Route testRoute = new Route();
+		testRoute.setRoute(routeToF);
+		ArrayList<Direction> invertedRoute = testRoute.invertRoute(routeToF);
+		
+		Assert.assertEquals(invertedRoute.get(0), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(1), Direction.LEFT);
+		Assert.assertEquals(invertedRoute.get(2), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(3), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(4), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(5), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(6), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(7), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(8), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(9), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(10), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(11), Direction.UP);
+		Assert.assertEquals(invertedRoute.get(12), Direction.UP);
+		
+		
+		
+	}
+	
+	//invert the route to B
+		@Test
+		public void invertRouteToBTests()
+		{
+			Route testRoute = new Route();
+			testRoute.setRoute(routeToB);
+			ArrayList<Direction> invertedRoute = testRoute.invertRoute(routeToB);
+			
+			Assert.assertEquals(invertedRoute.get(0), Direction.RIGHT);
+			Assert.assertEquals(invertedRoute.get(1), Direction.RIGHT);
+			Assert.assertEquals(invertedRoute.get(2), Direction.RIGHT);
+			Assert.assertEquals(invertedRoute.get(3), Direction.RIGHT);
+			Assert.assertEquals(invertedRoute.get(4), Direction.RIGHT);
+			Assert.assertEquals(invertedRoute.get(5), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(6), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(7), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(8), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(9), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(10), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(11), Direction.UP);
+			Assert.assertEquals(invertedRoute.get(12), Direction.UP);
+		}
 
 }

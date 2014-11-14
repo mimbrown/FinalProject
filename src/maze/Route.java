@@ -18,8 +18,19 @@ public class Route {
 		
 	}
 	
-	public void invertRoute() {
+	public ArrayList<Direction> invertRoute(ArrayList<Direction> route) {
+		return null;
 		
+	}
+	//for test purposes
+	public ArrayList<Direction> getRoute()
+	{
+		return route;
+	}
+	//for test purposes
+	public void setRoute(ArrayList<Direction> newRoute)
+	{
+		this.route = newRoute;
 	}
 
 }
