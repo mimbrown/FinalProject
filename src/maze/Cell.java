@@ -22,6 +22,10 @@ public class Cell {
 		return cellType == CellType.WALL;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public void draw(Graphics g) {
 		
 	}

@@ -20,6 +20,10 @@ public class Maze {
 		return null;
 	}
 	
+	public Set<String> getCaverns() {
+		return cavernNames;
+	}
+	
 	public void draw(Graphics g) {
 		
 	}

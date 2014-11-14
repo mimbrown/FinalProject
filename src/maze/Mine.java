@@ -19,6 +19,9 @@ public class Mine {
 		maze.loadMaze();
 	}
 	
+	public Maze getMaze() {
+		return maze;
+	}
 	// for testing purposes
 	public ArrayList<Robot> getRobots() {
 		return robots;
