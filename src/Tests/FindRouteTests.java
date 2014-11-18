@@ -10,6 +10,7 @@ import maze.Direction;
 import maze.Maze;
 import maze.Mine;
 import maze.Robot;
+import maze.Route;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -130,16 +131,27 @@ public class FindRouteTests {
 	// it's looking for and the caverns it happens to pass through.
 	@Test
 	public void testFindCaverns() {
+		Route f = new Route("f");
+		f.setRoute(routeToF);
 		robot.updateGoal("f");
 		assertTrue(robot.findRoute(mine.getMaze()));
-		assertTrue(robot.getKnownRoutes().contains(routeToF));
+		ArrayList<Direction> testerf = robot.getKnownRoutes().get("f").getRoute();
+		assertTrue(robot.getKnownRoutes().containsKey("f"));
+		assertTrue(robot.getKnownRoutes().get("f").equals(f));
+		
+		
+		Route b = new Route("b");
+		b.setRoute(routeToB);
 		robot.updateGoal("b");
 		assertTrue(robot.findRoute(mine.getMaze()));
-		assertTrue(robot.getKnownRoutes().contains(routeToB));
-		assertFalse(robot.getKnownRoutes().contains(routeToA));
+		ArrayList<Direction> testerb = robot.getKnownRoutes().get("b").getRoute();
+		assertTrue(robot.getKnownRoutes().containsKey("b"));
+		assertTrue(robot.getKnownRoutes().get("b").equals(b));
+		assertFalse(robot.getKnownRoutes().containsKey(routeToA));
+		
 		robot.updateGoal("d");
 		assertTrue(robot.findRoute(mine.getMaze()));
-		assertTrue(robot.getKnownRoutes().contains(routeToD));
+		assertTrue(robot.getKnownRoutes().containsKey(routeToD));
 	}
 	
 	// test to make sure the robot does not find an inaccessible cavern.
@@ -154,7 +166,7 @@ public class FindRouteTests {
 		assertFalse(robot.findRoute(mine2.getMaze()));
 		// robot should traverse the whole maze, so should know the route to a cavern on the
 		// other side of the mine.
-		assertTrue(robot.getKnownRoutes().contains(routeToA));
+		assertTrue(robot.getKnownRoutes().containsKey(routeToA));
 	}
 
 }

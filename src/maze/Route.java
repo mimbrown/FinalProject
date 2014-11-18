@@ -17,11 +17,11 @@ public class Route {
 	}
 	
 	public void stepForward(Direction direction) {
-		
+		route.add(direction);
 	}
 	
 	public void stepBack() {
-		
+		route.remove(route.size()-1);
 	}
 	
 	public ArrayList<Direction> invertRoute(ArrayList<Direction> route) {
@@ -54,12 +54,25 @@ public class Route {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Route) {
-			if(this.route.equals(((Route) obj).getRoute()) && this.cavern.equals(((Route) obj).getCavern())) {
-				return true;
+		Boolean identical = true;
+		Route other = (Route) obj;
+		if (!other.cavern.equals(this.cavern))
+		{
+			identical = false;
+		}
+		if (other.route.size() != this.route.size())
+		{
+			identical = false;
+			return identical;
+		}
+		for (int i = 0; i < this.route.size(); i++)
+		{
+			if (this.route.get(i) != other.route.get(i))
+			{
+				identical = false;
 			}
 		}
-		return false;
+		return identical;
 	}
 	
 }

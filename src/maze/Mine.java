@@ -35,6 +35,9 @@ public class Mine {
 			System.out.println(e.getMessage());
 			System.exit(0);
 		}
+		ourMine.getRobots().get(0).updateGoal("f");
+		ourMine.getRobots().get(0).findRoute(ourMine.getMaze());
+		
 	}
 
 }

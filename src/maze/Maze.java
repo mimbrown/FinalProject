@@ -104,6 +104,14 @@ public class Maze {
 		return cavernNames;
 	}
 	
+	public int getNumColumns() {
+		return numColumns;
+	}
+	
+	public int getNumRows() {
+		return numRows;
+	}
+	
 	public int getStartingLocationRow() {
 		return startingRow;
 	}
