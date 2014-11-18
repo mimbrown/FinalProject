@@ -7,7 +7,13 @@ public class Route {
 	private String cavern;
 	
 	public Route() {
-		
+		this.cavern = null;
+		route = null;
+	}
+	
+	public Route(String cavern) {
+		this.cavern = cavern;
+		route = new ArrayList<Direction>();
 	}
 	
 	public void stepForward(Direction direction) {

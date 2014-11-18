@@ -29,6 +29,11 @@ public class FindRouteTests {
 	@BeforeClass
 	public static void Before() throws AWTException {
 		mine = new Mine("MazeLayout.csv");
+		try {
+			mine.loadMine();	
+		} catch(BadConfigFormatException e) {
+			System.out.println(e.getMessage());
+		}
 		robot = mine.getRobots().get(0);
 
 		routeToF = new ArrayList<Direction>();
@@ -126,14 +131,14 @@ public class FindRouteTests {
 	@Test
 	public void testFindCaverns() {
 		robot.updateGoal("f");
-		assertTrue(robot.findRoute());
+		assertTrue(robot.findRoute(mine.getMaze()));
 		assertTrue(robot.getKnownRoutes().contains(routeToF));
 		robot.updateGoal("b");
-		assertTrue(robot.findRoute());
+		assertTrue(robot.findRoute(mine.getMaze()));
 		assertTrue(robot.getKnownRoutes().contains(routeToB));
 		assertFalse(robot.getKnownRoutes().contains(routeToA));
 		robot.updateGoal("d");
-		assertTrue(robot.findRoute());
+		assertTrue(robot.findRoute(mine.getMaze()));
 		assertTrue(robot.getKnownRoutes().contains(routeToD));
 	}
 	
@@ -146,7 +151,7 @@ public class FindRouteTests {
 		} catch(BadConfigFormatException e) {}
 		robot = mine2.getRobots().get(0);
 		robot.updateGoal("h");
-		assertFalse(robot.findRoute());
+		assertFalse(robot.findRoute(mine2.getMaze()));
 		// robot should traverse the whole maze, so should know the route to a cavern on the
 		// other side of the mine.
 		assertTrue(robot.getKnownRoutes().contains(routeToA));

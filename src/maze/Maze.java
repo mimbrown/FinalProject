@@ -11,6 +11,8 @@ public class Maze {
 	private Cell[][] maze;
 	private Set<String> cavernNames;
 	private String mazeFile;
+	private int startingRow, startingCol;
+	private Cell startingCell;
 	private int numRows, numColumns;
 
 	public Maze(String fileName) {
@@ -18,6 +20,7 @@ public class Maze {
 		numRows = 0;
 		numColumns = 0;
 		maze = new Cell[100][100];
+		startingCell = null;
 		cavernNames = new HashSet<String>();
 	}
 
@@ -82,6 +85,9 @@ public class Maze {
 			for(int cols=0; cols<numColumns; cols++) {
 				if(maze[rows][cols].isEntrance()) {
 					hasStart = true;
+					startingCell = maze[rows][cols];
+					startingRow = rows;
+					startingCol = cols;
 				}
 			}
 		}
@@ -96,6 +102,18 @@ public class Maze {
 
 	public Set<String> getCaverns() {
 		return cavernNames;
+	}
+	
+	public int getStartingLocationRow() {
+		return startingRow;
+	}
+	
+	public int getStartingLocationCol() {
+		return startingCol;
+	}
+	
+	public Cell getStartingCell() {
+		return startingCell;
 	}
 
 	public void draw(Graphics g) {

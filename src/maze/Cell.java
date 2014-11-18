@@ -8,7 +8,7 @@ public class Cell {
 	
 	public Cell(CellType cellType) {
 		this.cellType = cellType;
-		name = null;
+		name = "";
 	}
 	
 	public Cell(CellType cellType, String name) {

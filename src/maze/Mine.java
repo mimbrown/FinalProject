@@ -8,10 +8,10 @@ public class Mine {
 	
 	public Mine(String fileName) {
 		robots = new ArrayList<Robot>();
-		for(int i=0; i<4; i++) {
-			robots.add(new Robot(i));
-		}
 		maze = new Maze(fileName);
+		for(int i=0; i<4; i++) {
+			robots.add(new Robot(i, maze.getStartingCell()));
+		}
 		
 	}
 	
