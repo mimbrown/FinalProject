@@ -16,13 +16,7 @@ public class Mine {
 	}
 	
 	public void loadMine() throws BadConfigFormatException {
-		try {
-			maze.loadMaze();
-		} catch(BadConfigFormatException e) {
-			throw new BadConfigFormatException();
-			//System.out.println(e.getMessage());
-			//System.exit(0);
-		}
+		maze.loadMaze();
 	}
 	
 	public Maze getMaze() {
@@ -31,6 +25,16 @@ public class Mine {
 	// for testing purposes
 	public ArrayList<Robot> getRobots() {
 		return robots;
+	}
+	
+	public static void main(String[] args) {
+		Mine ourMine = new Mine("MazeLayout.csv");
+		try {
+			ourMine.loadMine();
+		} catch(BadConfigFormatException e) {
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
 	}
 
 }

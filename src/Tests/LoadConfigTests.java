@@ -25,8 +25,8 @@ public class LoadConfigTests {
 	
 	//Tests to see if improper layout (no start) throws an exception.
 	@Test(expected = BadConfigFormatException.class)
-	public void noStartBoardLayout() throws BadConfigFormatException {
-		mine = new Mine("noStartBoardLayout.csv");
+	public void noStartMazeLayout() throws BadConfigFormatException {
+		mine = new Mine("noStartMazeLayout.csv");
 		mine.loadMine();
 	}
 	
@@ -40,12 +40,12 @@ public class LoadConfigTests {
 		Maze maze = mine.getMaze();
 		
 		Assert.assertTrue(maze.getCellAt(11,1).isCavern());
-		Assert.assertTrue(maze.getCellAt(1,11).isWall());
+		Assert.assertTrue(maze.getCellAt(1,11).isPathway());
 		Assert.assertTrue(maze.getCellAt(8,6).isWall());
 		Assert.assertTrue(maze.getCellAt(6,8).isPathway());
 		Assert.assertTrue(maze.getCellAt(4,5).getName().equals("a"));
-		Assert.assertTrue(maze.getCellAt(20,21).getName().equals("x"));
-		Assert.assertTrue(maze.getCellAt(17,1).getName().equals("c"));
+		Assert.assertTrue(maze.getCellAt(19,20).getName() == null);
+		Assert.assertTrue(maze.getCellAt(16,1).getName().equals("c"));
 	}
 	
 	//Tests number of caverns on the board, and the names of the caverns.

@@ -57,6 +57,7 @@ public class Maze {
 								}
 								else {
 									maze[numRows][column] = new Cell(CellType.CAVERN, temp[column]);
+									cavernNames.add(temp[column]);
 								}
 							}
 							else throw new BadConfigFormatException("Unable to read in a cell.");
@@ -75,10 +76,22 @@ public class Maze {
 				throw new BadConfigFormatException("Bad Layout file");
 			}
 		}
+		// now check to make sure we have what we need in the file
+		boolean hasStart = false;
+		for(int rows=0; rows<numRows; rows++) {
+			for(int cols=0; cols<numColumns; cols++) {
+				if(maze[rows][cols].isEntrance()) {
+					hasStart = true;
+				}
+			}
+		}
+		if(!hasStart) {
+			throw new BadConfigFormatException("Mine doesn't have an entrance.");
+		}
 	}
 
 	public Cell getCellAt(int row, int col) {
-		return null;
+		return maze[row][col];
 	}
 
 	public Set<String> getCaverns() {
