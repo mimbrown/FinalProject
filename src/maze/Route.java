@@ -58,10 +58,14 @@ public class Route {
 		Route other = (Route) obj;
 		if (!other.cavern.equals(this.cavern))
 		{
+			System.out.println("names don't match");
 			identical = false;
 		}
 		if (other.route.size() != this.route.size())
 		{
+			System.out.println("length doesn't match");
+			System.out.println(other.route.size());
+			System.out.println(this.route.size());
 			identical = false;
 			return identical;
 		}
@@ -69,6 +73,7 @@ public class Route {
 		{
 			if (this.route.get(i) != other.route.get(i))
 			{
+				System.out.println("direction doesn't match");
 				identical = false;
 			}
 		}

@@ -67,49 +67,33 @@ public class FindRouteTests {
 		routeToB.add(Direction.DOWN);
 		routeToB.add(Direction.DOWN);
 		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.RIGHT);
+		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.RIGHT);
+		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.LEFT);
+		routeToB.add(Direction.DOWN);
+		routeToB.add(Direction.DOWN);
 		routeToB.add(Direction.LEFT);
 		routeToB.add(Direction.LEFT);
 		routeToB.add(Direction.LEFT);
 		routeToB.add(Direction.LEFT);
+		routeToB.add(Direction.UP);
 		routeToB.add(Direction.LEFT);
+		routeToB.add(Direction.LEFT);
+		routeToB.add(Direction.UP);
+		routeToB.add(Direction.UP);
+		routeToB.add(Direction.UP);
+		routeToB.add(Direction.UP);
 
-		// route to Cavern A from the start
+		// route to Cavern D from the start
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.UP);
-		routeToD.add(Direction.UP);
-		routeToD.add(Direction.UP);
-		routeToD.add(Direction.UP);
-		routeToD.add(Direction.UP);
-		routeToD.add(Direction.UP);
-
-		// route to Cavern d from the start
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.DOWN);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.LEFT);
-		routeToD.add(Direction.LEFT);
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
@@ -117,10 +101,17 @@ public class FindRouteTests {
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.RIGHT);
-		routeToD.add(Direction.RIGHT);
+		routeToD.add(Direction.DOWN);
+		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.DOWN);
 		routeToD.add(Direction.RIGHT);
-		routeToD.add(Direction.RIGHT);
+		routeToD.add(Direction.DOWN);
+		routeToD.add(Direction.DOWN);
+		routeToD.add(Direction.LEFT);
+		routeToD.add(Direction.DOWN);
+		routeToD.add(Direction.DOWN);
+		routeToD.add(Direction.LEFT);
+		routeToD.add(Direction.LEFT);
 		routeToD.add(Direction.UP);
 		routeToD.add(Direction.UP);
 		routeToD.add(Direction.UP);
@@ -148,10 +139,15 @@ public class FindRouteTests {
 		assertTrue(robot.getKnownRoutes().containsKey("b"));
 		assertTrue(robot.getKnownRoutes().get("b").equals(b));
 		assertFalse(robot.getKnownRoutes().containsKey(routeToA));
-		
+
+		Route d = new Route("d");
+		d.setRoute(routeToD);
 		robot.updateGoal("d");
 		assertTrue(robot.findRoute(mine.getMaze()));
-		assertTrue(robot.getKnownRoutes().containsKey(routeToD));
+		ArrayList<Direction> testerd = robot.getKnownRoutes().get("d").getRoute();
+		assertTrue(robot.getKnownRoutes().containsKey("d"));
+		assertTrue(robot.getKnownRoutes().get("d").equals(d));
+		assertFalse(robot.getKnownRoutes().containsKey(routeToA));
 	}
 	
 	// test to make sure the robot does not find an inaccessible cavern.
@@ -164,9 +160,6 @@ public class FindRouteTests {
 		robot = mine2.getRobots().get(0);
 		robot.updateGoal("h");
 		assertFalse(robot.findRoute(mine2.getMaze()));
-		// robot should traverse the whole maze, so should know the route to a cavern on the
-		// other side of the mine.
-		assertTrue(robot.getKnownRoutes().containsKey(routeToA));
 	}
 
 }
