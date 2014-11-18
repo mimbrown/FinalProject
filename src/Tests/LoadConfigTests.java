@@ -18,14 +18,14 @@ public class LoadConfigTests {
 	
 	//Tests to see if improper layout (uneven rows) throw an exception.
 	@Test(expected = BadConfigFormatException.class)
-	public void improperBoardLayout() {
+	public void improperBoardLayout() throws BadConfigFormatException {
 		mine = new Mine("BadMazeLayout.csv");
 		mine.loadMine();
 	}
 	
 	//Tests to see if improper layout (no start) throws an exception.
 	@Test(expected = BadConfigFormatException.class)
-	public void noStartBoardLayout() {
+	public void noStartBoardLayout() throws BadConfigFormatException {
 		mine = new Mine("noStartBoardLayout.csv");
 		mine.loadMine();
 	}
@@ -34,7 +34,9 @@ public class LoadConfigTests {
 	@Test
 	public void testingPointsOnTheBoard() {
 		mine = new Mine("MazeLayout.csv");
-		mine.loadMine();
+		try {
+			mine.loadMine();
+		} catch(BadConfigFormatException e) {}
 		Maze maze = mine.getMaze();
 		
 		Assert.assertTrue(maze.getCellAt(11,1).isCavern());
@@ -50,7 +52,9 @@ public class LoadConfigTests {
 	@Test
 	public void testingCaverns() {
 		mine = new Mine("mazeLayout.csv");
-		mine.loadMine();
+		try {
+			mine.loadMine();
+		} catch(BadConfigFormatException e) {}
 		Maze maze = mine.getMaze();
 		Set<String> caverns = maze.getCaverns();
 		

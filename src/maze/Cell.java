@@ -6,8 +6,14 @@ public class Cell {
 	private String name;
 	private CellType cellType;
 	
-	public Cell() {
-		
+	public Cell(CellType cellType) {
+		this.cellType = cellType;
+		name = null;
+	}
+	
+	public Cell(CellType cellType, String name) {
+		this.cellType = cellType;
+		this.name = name;
 	}
 	
 	public boolean isPathway() {
@@ -20,6 +26,10 @@ public class Cell {
 	
 	public boolean isWall() {
 		return cellType == CellType.WALL;
+	}
+	
+	public boolean isEntrance() {
+		return cellType == CellType.ENTRANCE;
 	}
 	
 	public String getName() {

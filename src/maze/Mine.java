@@ -15,8 +15,14 @@ public class Mine {
 		
 	}
 	
-	public void loadMine() {
-		maze.loadMaze();
+	public void loadMine() throws BadConfigFormatException {
+		try {
+			maze.loadMaze();
+		} catch(BadConfigFormatException e) {
+			throw new BadConfigFormatException();
+			//System.out.println(e.getMessage());
+			//System.exit(0);
+		}
 	}
 	
 	public Maze getMaze() {

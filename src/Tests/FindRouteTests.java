@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.awt.AWTException;
 import java.util.ArrayList;
 
+import maze.BadConfigFormatException;
 import maze.Direction;
 import maze.Maze;
 import maze.Mine;
@@ -140,7 +141,9 @@ public class FindRouteTests {
 	@Test
 	public void testFindClosedCavern() {
 		Mine mine2 = new Mine("MazeLayoutClosedCavern.csv");
-		mine2.loadMine();
+		try {
+			mine2.loadMine();
+		} catch(BadConfigFormatException e) {}
 		robot = mine2.getRobots().get(0);
 		robot.updateGoal("h");
 		assertFalse(robot.findRoute());

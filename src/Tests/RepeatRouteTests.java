@@ -6,6 +6,7 @@ import java.awt.AWTException;
 import java.util.ArrayList;
 import java.util.Set;
 
+import maze.BadConfigFormatException;
 import maze.Direction;
 import maze.Maze;
 import maze.Mine;
@@ -32,7 +33,9 @@ public class RepeatRouteTests {
 	@BeforeClass
 	public void Before() throws AWTException {
 		mine = new Mine("MazeLayout.csv");
-		mine.loadMine();
+		try {
+			mine.loadMine();
+		} catch(BadConfigFormatException e) {}
 		robots = mine.getRobots();
 		
 		routeToF = new ArrayList<Direction>();
