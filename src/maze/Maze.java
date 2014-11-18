@@ -50,16 +50,16 @@ public class Maze {
 						try {
 							if(temp[column].length() == 1) {
 								if(temp[column].equalsIgnoreCase("w")) {
-									maze[numRows][column] = new Cell(CellType.PATHWAY);
+									maze[numRows][column] = new Cell(CellType.PATHWAY, "", numRows, column);
 								}
 								else if(temp[column].equalsIgnoreCase("x")) {
-									maze[numRows][column] = new Cell(CellType.WALL);
+									maze[numRows][column] = new Cell(CellType.WALL, "", numRows, column);
 								}
 								else if(temp[column].equalsIgnoreCase("s")) {
-									maze[numRows][column] = new Cell(CellType.ENTRANCE);
+									maze[numRows][column] = new Cell(CellType.ENTRANCE, "", numRows, column);
 								}
 								else {
-									maze[numRows][column] = new Cell(CellType.CAVERN, temp[column]);
+									maze[numRows][column] = new Cell(CellType.CAVERN, temp[column], numRows, column);
 									cavernNames.add(temp[column]);
 								}
 							}

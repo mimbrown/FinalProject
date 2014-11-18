@@ -5,6 +5,8 @@ import java.awt.Graphics;
 public class Cell {
 	private String name;
 	private CellType cellType;
+	private int row;
+	private int col;
 	
 	public Cell(CellType cellType) {
 		this.cellType = cellType;
@@ -14,6 +16,13 @@ public class Cell {
 	public Cell(CellType cellType, String name) {
 		this.cellType = cellType;
 		this.name = name;
+	}
+	
+	public Cell(CellType cellType, String name, int row, int col) {
+		this.cellType = cellType;
+		this.name = name;
+		this.row = row;
+		this.col = col;
 	}
 	
 	public boolean isPathway() {
@@ -31,6 +40,14 @@ public class Cell {
 	public boolean isEntrance() {
 		return cellType == CellType.ENTRANCE;
 	}
+	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return col;
+	} 
 	
 	public String getName() {
 		return name;

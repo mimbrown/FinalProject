@@ -44,7 +44,7 @@ public class LoadConfigTests {
 		Assert.assertTrue(maze.getCellAt(8,6).isWall());
 		Assert.assertTrue(maze.getCellAt(6,8).isPathway());
 		Assert.assertTrue(maze.getCellAt(4,5).getName().equals("a"));
-		Assert.assertTrue(maze.getCellAt(19,20).getName() == null);
+		Assert.assertTrue(maze.getCellAt(19,20).getName() == "");
 		Assert.assertTrue(maze.getCellAt(16,1).getName().equals("c"));
 	}
 	

@@ -45,7 +45,7 @@ public class Robot {
 	private void recursion(Maze maze, int row, int col) {
 		currentLocation = maze.getCellAt(row, col);
 		visited.add(currentLocation);
-		
+
 		if(currentLocation.getName().equals(goalCavern) || foundCavern) {
 			foundCavern = true;
 			return;
@@ -98,24 +98,93 @@ public class Robot {
 		visited.remove(currentLocation);
 	}
 
-	public void followRoute() {
-
+	public void followRoute(Maze maze) 
+	{
+		ArrayList<Direction> temp = knownRoutes.get(goalCavern).getRoute();
+		int row = maze.getStartingLocationRow();
+		int col = maze.getStartingLocationCol();
+		currentLocation = maze.getCellAt(row, col);
+		for (int i = 0; i < temp.size(); i++)
+		{
+			if (temp.get(i) == Direction.DOWN)
+			{
+				row = row + 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+			if (temp.get(i) == Direction.RIGHT)
+			{
+				col = col + 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+			if (temp.get(i) == Direction.UP)
+			{
+				row = row - 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+			if (temp.get(i) == Direction.LEFT)
+			{
+				col = col - 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+		}
 	}
 
-	public Route checkForRoute() {
+	public Route checkForRoute(String name) {
+		if (knownRoutes.containsKey(name))
+		{
+			return knownRoutes.get(name);
+		}
 		return null;
 	}
 
-	public Route askForRoute(Robot robot) {
-		return null;
+	public void askForRoute(Robot robot) {
+		Route temp = robot.checkForRoute(goalCavern);
+		if (temp != null)
+		{
+			knownRoutes.put(goalCavern, temp);
+		}
+		else
+		{
+			System.out.println("Robot did not have the route asked for.");
+		}
 	}
 
 	public void updateGoal(String newCavern) {
 		goalCavern = newCavern;
 	}
 
-	public void goHome() {
+
+	public void goHome(Maze maze) {
+		int row = currentLocation.getRow();
+		int col = currentLocation.getCol();
+		ArrayList<Direction> wayBack = knownRoutes.get(goalCavern).getRoute();
+		for(int i = wayBack.size()-1; i >= 0; i--)
+		{
+			currentLocation = maze.getCellAt(row, col);
+			if (wayBack.get(i) == Direction.DOWN)
+			{
+				row = row - 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+			if (wayBack.get(i) == Direction.RIGHT)
+			{
+				col = col - 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+			if (wayBack.get(i) == Direction.UP)
+			{
+				row = row + 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+			if (wayBack.get(i) == Direction.LEFT)
+			{
+				col = col + 1;
+				currentLocation = maze.getCellAt(row, col);
+			}
+
+		}
 	}
+
 
 	public void draw(Graphics g) {
 

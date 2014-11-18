@@ -23,11 +23,6 @@ public class Route {
 	public void stepBack() {
 		route.remove(route.size()-1);
 	}
-	
-	public ArrayList<Direction> invertRoute(ArrayList<Direction> route) {
-		return null;
-		
-	}
 	//for test purposes
 	public ArrayList<Direction> getRoute()
 	{
