@@ -75,4 +75,15 @@ public class Route {
 		return identical;
 	}
 	
+	// When robots talk, they should give each other copies of routes,
+	// so that if one robot learns a better route, the other robots
+	// don't automatically update their own routes.
+	public Route copy() {
+		Route copy = new Route(this.cavern);
+		for(Direction d : this.route){
+			copy.stepForward(d);
+		}
+		return copy;
+	}
+	
 }

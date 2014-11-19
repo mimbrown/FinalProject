@@ -36,8 +36,17 @@ public class Mine {
 			System.exit(0);
 		}
 		ourMine.getRobots().get(0).updateGoal("f");
-		ourMine.getRobots().get(0).findRoute(ourMine.getMaze());
-		
+		//ourMine.getRobots().get(0).findRoute(ourMine.getMaze());
+		Route test1 = new Route("f");
+		test1.stepForward(Direction.UP);
+		Route test2 = test1.copy();
+		if(test1.equals(test2)) {
+			System.out.println("Good...");
+		}
+		test1.stepForward(Direction.UP);
+		if(!test1.equals(test2)) {
+			System.out.println("Very Good!");
+		}
 	}
 
 }
