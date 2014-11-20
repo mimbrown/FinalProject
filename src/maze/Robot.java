@@ -187,7 +187,8 @@ public class Robot {
 
 
 	public void draw(Graphics g) {
-
+		g.setColor(Color.blue);
+		g.fillOval(currentLocation.getRow() * Cell.CELL_SIZE, currentLocation.getCol() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
 	}
 
 	public Map<String,Route> getKnownRoutes() {

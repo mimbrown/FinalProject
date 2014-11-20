@@ -1,8 +1,11 @@
 package maze;
+import java.awt.Color;
 import java.awt.Graphics;
 
 
 public class Cell {
+	public static final int CELL_SIZE = 30;
+	
 	private String name;
 	private CellType cellType;
 	private int row;
@@ -72,7 +75,16 @@ public class Cell {
 	}
 
 	public void draw(Graphics g) {
-		
+		if(isPathway()) {
+			g.setColor(Color.lightGray);
+		}
+		else if(isWall()) {
+			g.setColor(Color.darkGray);
+		}
+		else if(isCavern()) {
+			g.setColor(Color.white);
+		}
+		g.fillRect(col*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 	}
 
 }

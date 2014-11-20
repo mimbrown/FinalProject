@@ -125,7 +125,11 @@ public class Maze {
 	}
 
 	public void draw(Graphics g) {
-
+		for(int row=0; row<numRows; row++) {
+			for(int col=0; col<numColumns; col++) {
+				maze[row][col].draw(g);
+			}
+		}
 	}
 
 }
