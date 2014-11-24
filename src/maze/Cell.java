@@ -75,6 +75,7 @@ public class Cell {
 	}
 
 	public void draw(Graphics g) {
+		
 		if(isPathway()) {
 			g.setColor(Color.lightGray);
 		}

@@ -15,6 +15,8 @@ public class Maze {
 	private Cell startingCell;
 	private int numRows, numColumns;
 
+	
+	
 	public Maze(String fileName) {
 		mazeFile = fileName;
 		numRows = 0;
