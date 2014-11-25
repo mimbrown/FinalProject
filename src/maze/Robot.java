@@ -20,9 +20,10 @@ public class Robot {
 	private Mine mine;
 	public static int pause = 10;
 
-	public Robot(int number, Cell startingLocation) {
+	public Robot(int number, Cell startingLocation, Color color) {
 		this.number = number;
 		this.currentLocation = startingLocation;
+		this.color = color;
 		visited = new HashSet<Cell>();
 		knownRoutes = new HashMap<String,Route>();
 		goalCavern = "";
@@ -224,7 +225,7 @@ public class Robot {
 		this.mine = mine;
 	}
 	public void draw(Graphics g) {
-		g.setColor(Color.blue);
+		g.setColor(color);
 		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE, currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
 	}
 

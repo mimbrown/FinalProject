@@ -121,7 +121,7 @@ public class FindRouteTests {
 	// test to make sure the robot is finding the caverns it is supposed to, both the caverns
 	// it's looking for and the caverns it happens to pass through.
 	@Test
-	public void testFindCaverns() {
+	public void testFindCaverns() throws InterruptedException {
 		Route f = new Route("f");
 		f.setRoute(routeToF);
 		robot.updateGoal("f");
@@ -152,7 +152,7 @@ public class FindRouteTests {
 	
 	// test to make sure the robot does not find an inaccessible cavern.
 	@Test
-	public void testFindClosedCavern() {
+	public void testFindClosedCavern() throws InterruptedException {
 		Mine mine2 = new Mine("MazeLayoutClosedCavern.csv");
 		try {
 			mine2.loadMine();

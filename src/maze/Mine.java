@@ -1,5 +1,6 @@
 package maze;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Set;
@@ -23,8 +24,13 @@ public class Mine extends JPanel {
 	public void loadMine() throws BadConfigFormatException {
 		maze.loadMaze();
 		createLabels();
+		ArrayList<Color> robotColors = new ArrayList<Color>();
+		robotColors.add(Color.blue);
+		robotColors.add(Color.red);
+		robotColors.add(Color.yellow);
+		robotColors.add(Color.green);
 		for(int i=0; i<NUM_OF_ROBOTS; i++) {
-			Robot temp = new Robot(i,maze.getStartingCell());
+			Robot temp = new Robot(i,maze.getStartingCell(), robotColors.get(i));
 			temp.giveMine(this);
 			robots.add(temp);
 		}
