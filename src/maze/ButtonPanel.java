@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -26,27 +27,16 @@ public class ButtonPanel extends JPanel {
 	
 	public ButtonPanel(Mine mine)
 	{
-		cavernAButton = new Button("Cavern A");
-		cavernBButton = new Button("Cavern B");
-		cavernCButton = new Button("Cavern C");
-		cavernDButton = new Button("Cavern D");
-		cavernEButton = new Button("Cavern E");
-		cavernFButton = new Button("Cavern F");
-		cavernGButton = new Button("Cavern G");
-		cavernHButton = new Button("Cavern H");
-		cavernIButton = new Button("Cavern I");
-		setLayout(new GridLayout(5,2));
+
+		Set<String> names = mine.getMaze().getCaverns();
+		setLayout(new GridLayout((int) (names.size() / 2) + 1,2));
+		for(String a : names)
+		{
+		Button cavernButton = new Button("Cavern " + a.toUpperCase());
+		add(cavernButton);
+		}
 		
 		setBorder(new TitledBorder(new EtchedBorder(), "Find Cavern"));
-		add(cavernAButton);
-		add(cavernBButton);
-		add(cavernCButton);
-		add(cavernDButton);
-		add(cavernEButton);
-		add(cavernFButton);
-		add(cavernGButton);
-		add(cavernHButton);
-		add(cavernIButton);
 		
 		setVisible(true);
 	}

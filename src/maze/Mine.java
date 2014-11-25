@@ -81,7 +81,7 @@ public class Mine extends JPanel {
 		return robots;
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		Mine ourMine = new Mine("MazeLayout.csv");
 		try {
 			ourMine.loadMine();
@@ -91,6 +91,6 @@ public class Mine extends JPanel {
 		}
 		ourMine.getRobots().get(0).updateGoal("f");
 		ourMine.getRobots().get(0).findRoute(ourMine.getMaze());
-	}*/
+	}
 
 }

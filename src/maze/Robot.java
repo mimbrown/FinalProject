@@ -181,14 +181,14 @@ public class Robot {
 				col = col + 1;
 				currentLocation = maze.getCellAt(row, col);
 			}
-
+			
 		}
 	}
 
 
 	public void draw(Graphics g) {
 		g.setColor(Color.blue);
-		g.fillOval(currentLocation.getRow() * Cell.CELL_SIZE, currentLocation.getCol() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
+		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE, currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
 	}
 
 	public Map<String,Route> getKnownRoutes() {

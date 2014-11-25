@@ -76,7 +76,7 @@ public class Cell {
 
 	public void draw(Graphics g) {
 		
-		if(isPathway()) {
+		if(isPathway() || isEntrance()) {
 			g.setColor(Color.lightGray);
 		}
 		else if(isWall()) {
