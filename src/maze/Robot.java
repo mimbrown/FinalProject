@@ -17,6 +17,8 @@ public class Robot {
 	private Color color;
 	private String goalCavern;
 	private Boolean foundCavern;
+	private Mine mine;
+	public static int pause = 100;
 
 	public Robot(int number, Cell startingLocation) {
 		this.number = number;
@@ -27,7 +29,7 @@ public class Robot {
 	}
 
 	// returns a boolean indicating whether the cavern was able to be found
-	public boolean findRoute(Maze maze) {
+	public boolean findRoute(Maze maze) throws InterruptedException {
 
 		currentRoute = new Route(goalCavern);
 		visited.clear();
@@ -42,8 +44,10 @@ public class Robot {
 
 	}
 
-	private void recursion(Maze maze, int row, int col) {
+	private void recursion(Maze maze, int row, int col) throws InterruptedException {
 		currentLocation = maze.getCellAt(row, col);
+		mine.repaint();
+		Thread.sleep(pause);
 		visited.add(currentLocation);
 
 		if(currentLocation.getName().equals(goalCavern) || foundCavern) {
@@ -59,6 +63,9 @@ public class Robot {
 				if (!foundCavern)
 				{
 					currentRoute.stepBack();
+					currentLocation = maze.getCellAt(row, col);
+					mine.repaint();
+					Thread.sleep(pause);
 				}
 			}
 		}
@@ -70,6 +77,9 @@ public class Robot {
 				if (!foundCavern)
 				{
 					currentRoute.stepBack();
+					currentLocation = maze.getCellAt(row, col);
+					mine.repaint();
+					Thread.sleep(pause);
 				}
 			}
 		}
@@ -81,6 +91,9 @@ public class Robot {
 				if (!foundCavern)
 				{
 					currentRoute.stepBack();
+					currentLocation = maze.getCellAt(row, col);
+					mine.repaint();
+					Thread.sleep(pause);
 				}
 			}
 		}
@@ -92,6 +105,9 @@ public class Robot {
 				if (!foundCavern)
 				{
 					currentRoute.stepBack();
+					currentLocation = maze.getCellAt(row, col);
+					mine.repaint();
+					Thread.sleep(pause);
 				}
 			}
 		}
@@ -106,6 +122,7 @@ public class Robot {
 		currentLocation = maze.getCellAt(row, col);
 		for (int i = 0; i < temp.size(); i++)
 		{
+			mine.repaint();
 			if (temp.get(i) == Direction.DOWN)
 			{
 				row = row + 1;
@@ -161,6 +178,7 @@ public class Robot {
 		for(int i = wayBack.size()-1; i >= 0; i--)
 		{
 			currentLocation = maze.getCellAt(row, col);
+			mine.repaint();
 			if (wayBack.get(i) == Direction.DOWN)
 			{
 				row = row - 1;
@@ -185,7 +203,10 @@ public class Robot {
 		}
 	}
 
-
+	public void giveMine(Mine mine)
+	{
+		this.mine = mine;
+	}
 	public void draw(Graphics g) {
 		g.setColor(Color.blue);
 		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE, currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);

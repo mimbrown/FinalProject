@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class MineGUI extends JFrame {
-	private Mine mine;
+	private static Mine mine;
 	private ButtonPanel buttonPanel;
 	
 	public MineGUI() {
@@ -26,8 +26,10 @@ public class MineGUI extends JFrame {
 		add(buttonPanel, BorderLayout.LINE_END);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		MineGUI ourMine = new MineGUI();
 		ourMine.setVisible(true);
+		mine.getRobots().get(0).updateGoal("d");
+		mine.getRobots().get(0).findRoute(mine.getMaze());
 	}
 }

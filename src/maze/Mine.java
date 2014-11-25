@@ -24,7 +24,9 @@ public class Mine extends JPanel {
 		maze.loadMaze();
 		createLabels();
 		for(int i=0; i<NUM_OF_ROBOTS; i++) {
-			robots.add(new Robot(i, maze.getStartingCell()));
+			Robot temp = new Robot(i,maze.getStartingCell());
+			temp.giveMine(this);
+			robots.add(temp);
 		}
 	}
 	
