@@ -2,6 +2,7 @@ package maze;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,15 +11,6 @@ public class Mine extends JPanel {
 	public static final int NUM_OF_ROBOTS = 4;
 	private ArrayList<Robot> robots;
 	private Maze maze;
-	private JLabel aLabel;
-	private JLabel bLabel;
-	private JLabel cLabel;
-	private JLabel dLabel;
-	private JLabel eLabel;
-	private JLabel fLabel;
-	private JLabel gLabel;
-	private JLabel hLabel;
-	private JLabel iLabel;
 	
 	
 	public Mine(String fileName) {
@@ -30,38 +22,43 @@ public class Mine extends JPanel {
 	
 	public void loadMine() throws BadConfigFormatException {
 		maze.loadMaze();
-		aLabel = new JLabel("Cavern A");
-		bLabel = new JLabel("Cavern B");
-		cLabel = new JLabel("Cavern C");
-		dLabel = new JLabel("Cavern D");
-		eLabel = new JLabel("Cavern E");
-		fLabel = new JLabel("Cavern F");
-		gLabel = new JLabel("Cavern G");
-		hLabel = new JLabel("Cavern H");
-		iLabel = new JLabel("Cavern I");
-		
-		aLabel.setBounds(110, 60, 100,100);
-		bLabel.setBounds(15, 300, 100, 100);
-		cLabel.setBounds(15, 410, 100, 100);
-		dLabel.setBounds(140, 355, 100, 100);
-		eLabel.setBounds(380, 500, 100, 100);
-		fLabel.setBounds(255, 325, 100, 100);
-		gLabel.setBounds(375, 325, 100, 100);
-		hLabel.setBounds(500, 500, 100, 100);
-		iLabel.setBounds(567, 20, 100, 100);
-		
+		createLabels();
 		for(int i=0; i<NUM_OF_ROBOTS; i++) {
 			robots.add(new Robot(i, maze.getStartingCell()));
 		}
-		add(aLabel);
-		add(bLabel);
-		add(cLabel);
-		add(dLabel);
-		add(eLabel);
-		add(fLabel);
-		add(gLabel);
-		add(hLabel);
-		add(iLabel);
+	}
+	
+	private void createLabels()
+	{
+		Set<String> caverns = maze.getCaverns();
+
+		for(String a : caverns)
+		{
+			JLabel temp = new JLabel("Cavern " + a.toUpperCase());
+			int xpos = 0;
+			int ypos = 0;
+			int count = 0;
+			for(int i = 0; i < maze.getNumColumns(); i++)
+			{
+				for(int ii = 0; ii < maze.getNumRows(); ii++)
+				{
+					if(maze.getCellAt(ii, i).isCavern())
+					{
+						if(maze.getCellAt(ii,i).getName().equals(a))
+						{
+							
+							xpos = xpos + i * Cell.CELL_SIZE;
+							ypos = ypos + ii * Cell.CELL_SIZE;
+							count++;
+						}
+					}
+				}
+			}
+			xpos = xpos/count;
+			ypos = ypos/count;
+			temp.setBounds(xpos-8,ypos-38,100,100);
+			add(temp);
+		}
 	}
 	
 	public Maze getMaze() {
@@ -79,18 +76,6 @@ public class Mine extends JPanel {
 	// for testing purposes
 	public ArrayList<Robot> getRobots() {
 		return robots;
-	}
-	
-	public static void main(String[] args) {
-		Mine ourMine = new Mine("MazeLayout.csv");
-		try {
-			ourMine.loadMine();
-		} catch(BadConfigFormatException e) {
-			System.out.println(e.getMessage());
-			System.exit(0);
-		}
-		ourMine.getRobots().get(0).updateGoal("f");
-		ourMine.getRobots().get(0).findRoute(ourMine.getMaze());
 	}
 
 }
