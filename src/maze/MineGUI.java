@@ -31,5 +31,6 @@ public class MineGUI extends JFrame {
 		ourMine.setVisible(true);
 		mine.getRobots().get(0).updateGoal("d");
 		mine.getRobots().get(0).findRoute(mine.getMaze());
+		mine.getRobots().get(0).goHome(mine.getMaze());
 	}
 }

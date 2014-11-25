@@ -18,7 +18,7 @@ public class Robot {
 	private String goalCavern;
 	private Boolean foundCavern;
 	private Mine mine;
-	public static int pause = 100;
+	public static int pause = 10;
 
 	public Robot(int number, Cell startingLocation) {
 		this.number = number;
@@ -114,7 +114,7 @@ public class Robot {
 		visited.remove(currentLocation);
 	}
 
-	public void followRoute(Maze maze) 
+	public void followRoute(Maze maze) throws InterruptedException 
 	{
 		ArrayList<Direction> temp = knownRoutes.get(goalCavern).getRoute();
 		int row = maze.getStartingLocationRow();
@@ -127,21 +127,29 @@ public class Robot {
 			{
 				row = row + 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			if (temp.get(i) == Direction.RIGHT)
 			{
 				col = col + 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			if (temp.get(i) == Direction.UP)
 			{
 				row = row - 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			if (temp.get(i) == Direction.LEFT)
 			{
 				col = col - 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 		}
 	}
@@ -171,7 +179,7 @@ public class Robot {
 	}
 
 
-	public void goHome(Maze maze) {
+	public void goHome(Maze maze) throws InterruptedException {
 		int row = currentLocation.getRow();
 		int col = currentLocation.getCol();
 		ArrayList<Direction> wayBack = knownRoutes.get(goalCavern).getRoute();
@@ -183,21 +191,29 @@ public class Robot {
 			{
 				row = row - 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			if (wayBack.get(i) == Direction.RIGHT)
 			{
 				col = col - 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			if (wayBack.get(i) == Direction.UP)
 			{
 				row = row + 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			if (wayBack.get(i) == Direction.LEFT)
 			{
 				col = col + 1;
 				currentLocation = maze.getCellAt(row, col);
+				mine.repaint();
+				Thread.sleep(pause);
 			}
 			
 		}
