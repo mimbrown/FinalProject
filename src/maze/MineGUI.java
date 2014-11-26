@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class MineGUI extends JFrame {
 	private static Mine mine;
 	private ButtonPanel buttonPanel;
-	private JDialog routesDialog;
+	private RobotRouteDialog routesDialog;
 	
 	
 	public MineGUI() {
@@ -30,7 +30,6 @@ public class MineGUI extends JFrame {
 			System.exit(0);
 		}
 		buttonPanel= new ButtonPanel(mine);
-		routesDialog = new JDialog();
 		menuBar();
 		setSize(800, 650);
 		setLayout(new BorderLayout());
@@ -55,39 +54,16 @@ public class MineGUI extends JFrame {
 		robotRoutes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				robotRouteDialog();
+				routesDialog = new RobotRouteDialog();
+				// set the text field for each robot
+				for(int i = 0; i < mine.getRobots().size(); i++) 
+					routesDialog.setRobotRoutes(i,mine.getRobots().get(i).getKnownRoutes());
 			}
 		});
 		fileMenu.add(robotRoutes);
 		fileMenu.add(exitItem);
 		menu.add(fileMenu);
 		setJMenuBar(menu);
-	}
-	
-	public void robotRouteDialog() {
-		
-		routesDialog.setVisible(true);
-		routesDialog.setSize(300, 300);
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(4,2));
-		JLabel robot1 = new JLabel("Robot 1");
-		panel.add(robot1);
-		JTextField robot1Routes = new JTextField();
-		panel.add(robot1Routes);
-		JLabel robot2 = new JLabel("Robot 2");
-		panel.add(robot2);
-		JTextField robot2Routes = new JTextField();
-		panel.add(robot2Routes);
-		JLabel robot3 = new JLabel("Robot 3");
-		panel.add(robot3);
-		JTextField robot3Routes = new JTextField();
-		panel.add(robot3Routes);
-		JLabel robot4 = new JLabel("Robot 4");
-		panel.add(robot4);
-		JTextField robot4Routes = new JTextField();
-		panel.add(robot4Routes);
-		
-		routesDialog.add(panel);
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -98,5 +74,12 @@ public class MineGUI extends JFrame {
 		mine.getRobots().get(0).goHome(mine.getMaze());
 		mine.getRobots().get(0).followRoute(mine.getMaze());
 		mine.getRobots().get(0).goHome(mine.getMaze());
+		
+		mine.getRobots().get(1).updateGoal("g");
+		mine.getRobots().get(1).findRoute(mine.getMaze());
+		mine.getRobots().get(1).goHome(mine.getMaze());
+		mine.getRobots().get(1).followRoute(mine.getMaze());
+		mine.getRobots().get(1).goHome(mine.getMaze());
+		
 	}
 }
