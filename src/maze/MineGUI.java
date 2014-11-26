@@ -33,6 +33,7 @@ public class MineGUI extends JFrame {
 		menuBar();
 		setSize(800, 650);
 		setLayout(new BorderLayout());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(mine, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.LINE_END);
 		mine.giveButtons(buttonPanel);
