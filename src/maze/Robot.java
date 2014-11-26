@@ -30,7 +30,7 @@ public class Robot {
 	}
 
 	// returns a boolean indicating whether the cavern was able to be found
-	public boolean findRoute(Maze maze) throws InterruptedException {
+	public boolean findRoute(Maze maze){
 
 		currentRoute = new Route(goalCavern);
 		visited.clear();
@@ -45,10 +45,14 @@ public class Robot {
 
 	}
 
-	private void recursion(Maze maze, int row, int col) throws InterruptedException {
+	private void recursion(Maze maze, int row, int col) {
 		currentLocation = maze.getCellAt(row, col);
 		mine.repaint();
-		Thread.sleep(pause);
+		try {
+			Thread.sleep(pause);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 		visited.add(currentLocation);
 
 		if(currentLocation.getName().equals(goalCavern) || foundCavern) {
@@ -66,7 +70,11 @@ public class Robot {
 					currentRoute.stepBack();
 					currentLocation = maze.getCellAt(row, col);
 					mine.repaint();
-					Thread.sleep(pause);
+					try {
+						Thread.sleep(pause);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
 				}
 			}
 		}
@@ -80,7 +88,11 @@ public class Robot {
 					currentRoute.stepBack();
 					currentLocation = maze.getCellAt(row, col);
 					mine.repaint();
-					Thread.sleep(pause);
+					try {
+						Thread.sleep(pause);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
 				}
 			}
 		}
@@ -94,7 +106,11 @@ public class Robot {
 					currentRoute.stepBack();
 					currentLocation = maze.getCellAt(row, col);
 					mine.repaint();
-					Thread.sleep(pause);
+					try {
+						Thread.sleep(pause);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
 				}
 			}
 		}
@@ -108,14 +124,18 @@ public class Robot {
 					currentRoute.stepBack();
 					currentLocation = maze.getCellAt(row, col);
 					mine.repaint();
-					Thread.sleep(pause);
+					try {
+						Thread.sleep(pause);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
 				}
 			}
 		}
 		visited.remove(currentLocation);
 	}
 
-	public void followRoute(Maze maze) throws InterruptedException 
+	public void followRoute(Maze maze)
 	{
 		ArrayList<Direction> temp = knownRoutes.get(goalCavern).getRoute();
 		int row = maze.getStartingLocationRow();
@@ -129,28 +149,44 @@ public class Robot {
 				row = row + 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			if (temp.get(i) == Direction.RIGHT)
 			{
 				col = col + 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			if (temp.get(i) == Direction.UP)
 			{
 				row = row - 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			if (temp.get(i) == Direction.LEFT)
 			{
 				col = col - 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 		}
 	}
@@ -180,7 +216,7 @@ public class Robot {
 	}
 
 
-	public void goHome(Maze maze) throws InterruptedException {
+	public void goHome(Maze maze){
 		int row = currentLocation.getRow();
 		int col = currentLocation.getCol();
 		ArrayList<Direction> wayBack = knownRoutes.get(goalCavern).getRoute();
@@ -193,28 +229,44 @@ public class Robot {
 				row = row - 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			if (wayBack.get(i) == Direction.RIGHT)
 			{
 				col = col - 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			if (wayBack.get(i) == Direction.UP)
 			{
 				row = row + 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			if (wayBack.get(i) == Direction.LEFT)
 			{
 				col = col + 1;
 				currentLocation = maze.getCellAt(row, col);
 				mine.repaint();
-				Thread.sleep(pause);
+				try {
+					Thread.sleep(pause);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			
 		}

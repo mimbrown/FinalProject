@@ -35,6 +35,7 @@ public class MineGUI extends JFrame {
 		setLayout(new BorderLayout());
 		add(mine, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.LINE_END);
+		mine.giveButtons(buttonPanel);
 	}
 	
 	public void menuBar() {
