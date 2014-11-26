@@ -61,14 +61,14 @@ public class Mine extends JPanel {
 				{
 					robots.get(current).updateGoal(a.getKey());
 					robots.get(current).askForRoute(robots.get(onDeck));
-					if(robots.get(current).findRoute(maze))
+					if(robots.get(current).checkForRoute(a.getKey()) == null)
 					{
-						robots.get(current).followRoute(maze);
+						robots.get(current).findRoute(maze);
 						robots.get(current).goHome(maze);
 					}
 					else
 					{
-						robots.get(current).findRoute(maze);
+						robots.get(current).followRoute(maze);
 						robots.get(current).goHome(maze);
 					}
 					cycleRobots();
@@ -129,6 +129,7 @@ public class Mine extends JPanel {
 	
 	@Override
 	public void paintComponent(Graphics g) {
+		System.out.println("testing");
 		maze.draw(g);
 		for(Robot r : robots) {
 			r.draw(g);
