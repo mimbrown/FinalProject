@@ -59,9 +59,34 @@ public class Mine extends JPanel {
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
-					System.out.println("test");
+					robots.get(current).updateGoal(a.getKey());
+					robots.get(current).askForRoute(robots.get(onDeck));
+					if(robots.get(current).findRoute(maze))
+					{
+						robots.get(current).followRoute(maze);
+						robots.get(current).goHome(maze);
+					}
+					else
+					{
+						robots.get(current).findRoute(maze);
+						robots.get(current).goHome(maze);
+					}
+					cycleRobots();
 				}
 			});
+		}
+	}
+	
+	public void cycleRobots() {
+		current++;
+		onDeck++;
+		if (current == NUM_OF_ROBOTS)
+		{
+			current = 0;
+		}
+		if (onDeck == NUM_OF_ROBOTS)
+		{
+			onDeck = 0;
 		}
 	}
 	
