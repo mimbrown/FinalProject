@@ -59,7 +59,6 @@ public class Mine extends JPanel {
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
-					System.out.println("test 1");
 					robots.get(current).updateGoal(a.getKey());
 					robots.get(current).askForRoute(robots.get(onDeck));
 					if(robots.get(current).findRoute(maze))
@@ -69,7 +68,6 @@ public class Mine extends JPanel {
 					}
 					else
 					{
-						System.out.println("test 2");
 						robots.get(current).findRoute(maze);
 						robots.get(current).goHome(maze);
 					}
