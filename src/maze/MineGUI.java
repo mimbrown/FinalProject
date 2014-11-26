@@ -36,6 +36,7 @@ public class MineGUI extends JFrame {
 		add(mine, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.LINE_END);
 		mine.giveButtons(buttonPanel);
+		mine.configureButtons();
 	}
 	
 	public void menuBar() {
@@ -69,17 +70,6 @@ public class MineGUI extends JFrame {
 	public static void main(String[] args) throws InterruptedException {
 		MineGUI ourMine = new MineGUI();
 		ourMine.setVisible(true);
-		mine.getRobots().get(0).updateGoal("d");
-		mine.getRobots().get(0).findRoute(mine.getMaze());
-		mine.getRobots().get(0).goHome(mine.getMaze());
-		mine.getRobots().get(0).followRoute(mine.getMaze());
-		mine.getRobots().get(0).goHome(mine.getMaze());
-		
-		mine.getRobots().get(1).updateGoal("g");
-		mine.getRobots().get(1).findRoute(mine.getMaze());
-		mine.getRobots().get(1).goHome(mine.getMaze());
-		mine.getRobots().get(1).followRoute(mine.getMaze());
-		mine.getRobots().get(1).goHome(mine.getMaze());
 		
 	}
 }

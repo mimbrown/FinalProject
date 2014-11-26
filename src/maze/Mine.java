@@ -14,8 +14,6 @@ import javafx.scene.control.Button;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.GlobalVariables;
-
 public class Mine extends JPanel {
 	public static final int NUM_OF_ROBOTS = 4;
 	private ArrayList<Robot> robots;
@@ -50,7 +48,7 @@ public class Mine extends JPanel {
 		
 	}
 	
-	public void getButtons(ButtonPanel panels) {
+	public void giveButtons(ButtonPanel panels) {
 		panel = panels;
 	}
 	
@@ -61,7 +59,7 @@ public class Mine extends JPanel {
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
-					
+					System.out.println("test");
 				}
 			});
 		}
