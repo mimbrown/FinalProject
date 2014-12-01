@@ -69,6 +69,7 @@ public class Mine extends JPanel {
 						robots.get(current).findRoute(maze);
 						robots.get(current).goHome(maze);
 					}
+					robots.get(current).showCurrentRoute();
 					cycleRobots();
 				}
 			});
