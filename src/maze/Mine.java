@@ -25,7 +25,7 @@ public class Mine extends JPanel {
 		maze = new Maze(fileName);
 		setLayout(null);
 		current = 0;
-		onDeck = NUM_OF_ROBOTS - 1;
+		onDeck = 1;
 		
 	}
 	

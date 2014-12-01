@@ -52,6 +52,10 @@ public class RobotRouteDialog extends JDialog {
 		panel.add(robot4);
 		robot4Routes = new JTextField();
 		panel.add(robot4Routes);
+		robot1Routes.setEditable(false);
+		robot2Routes.setEditable(false);
+		robot3Routes.setEditable(false);
+		robot4Routes.setEditable(false);
 		
 		routesDialog.add(panel);
 	} 
@@ -60,7 +64,7 @@ public class RobotRouteDialog extends JDialog {
 	public void setRobotRoutes(int robot, Map<String,Route> knownRoutes) {
 		String caverns = "";
 		for(Map.Entry<String, Route> entry : knownRoutes.entrySet()) {
-			caverns += entry.getKey();
+			caverns += entry.getKey().toUpperCase();
 			if(knownRoutes.size() > 1) caverns += ", ";
 		}
 		
