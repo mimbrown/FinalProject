@@ -52,7 +52,7 @@ public class Mine extends JPanel {
 	
 	public void configureButtons() {
 		Map<String, java.awt.Button> buttons = panel.getButtons();
-		for(final Map.Entry<String,java.awt.Button> a : buttons.entrySet())
+		for(Map.Entry<String,java.awt.Button> a : buttons.entrySet())
 		{
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
