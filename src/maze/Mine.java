@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.scene.control.Button;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -54,7 +52,7 @@ public class Mine extends JPanel {
 	
 	public void configureButtons() {
 		Map<String, java.awt.Button> buttons = panel.getButtons();
-		for(Map.Entry<String,java.awt.Button> a : buttons.entrySet())
+		for(final Map.Entry<String,java.awt.Button> a : buttons.entrySet())
 		{
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)

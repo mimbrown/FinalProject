@@ -59,8 +59,10 @@ public class RobotRouteDialog extends JDialog {
 	
 	public void setRobotRoutes(int robot, Map<String,Route> knownRoutes) {
 		String caverns = "";
-		for(Map.Entry<String, Route> entry : knownRoutes.entrySet())
+		for(Map.Entry<String, Route> entry : knownRoutes.entrySet()) {
 			caverns += entry.getKey();
+			if(knownRoutes.size() > 1) caverns += ", ";
+		}
 		
 		switch(robot) {
 		case 0:
@@ -76,32 +78,6 @@ public class RobotRouteDialog extends JDialog {
 			robot4Routes.setText(caverns);
 			break;
 		}
-		System.out.println("caverns: " + caverns);
 	}
 	
-	public String getRobot1Routes() {
-		return routes1;
-	}
-
-	public void setRobot2Routes(String routes2) {
-		this.routes2 = routes2;
-	}
-	
-	public String getRobot2Routes() {
-		return routes2;
-	}
-	public void setRobot3Routes(String routes3) {
-		this.routes3 = routes3;
-	}
-	
-	public String getRobot3Routes() {
-		return routes3;
-	}
-	public void setRobot4Routes(String routes4) {
-		this.routes4 = routes4;
-	}
-	
-	public String getRobot4Routes() {
-		return routes4;
-	}
 }
