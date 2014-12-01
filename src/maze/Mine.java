@@ -59,7 +59,7 @@ public class Mine extends JPanel {
 				{
 					robots.get(current).updateGoal(a.getKey());
 					robots.get(current).askForRoute(robots.get(onDeck));
-					if(robots.get(current).findRoute(maze))
+					if(robots.get(current).checkForRoute(a.getKey()) != null)
 					{
 						robots.get(current).followRoute(maze);
 						robots.get(current).goHome(maze);
