@@ -26,6 +26,7 @@ public class Robot {
 	public static int pause = 100;
 	private int where;
 	private Timer timer;
+	private boolean canGo;
 
 	public Robot(int number, Cell startingLocation, Color color) {
 		this.number = number;
@@ -35,6 +36,7 @@ public class Robot {
 		knownRoutes = new HashMap<String,Route>();
 		goalCavern = "";
 		path = new ArrayList<Cell>();
+		canGo = true;
 	}
 
 	// returns a boolean indicating whether the cavern was able to be found
@@ -228,12 +230,12 @@ public class Robot {
 	}
 
 	public void showCurrentRoute() {
-		where = 0;
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
 				if (where == path.size())
 				{
+					canGo = true;
 					timer.cancel();
 				}
 				else
@@ -244,8 +246,13 @@ public class Robot {
 				}
 			}
 		};
-		timer = new Timer();
-		timer.schedule(task, pause, pause);
+		if (canGo == true)
+		{
+			where = 0;
+			canGo = false;
+			timer = new Timer();
+			timer.schedule(task, pause, pause);
+		}
 	}
 
 }
