@@ -58,6 +58,12 @@ public class Mine extends JPanel {
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
+					int count = 0;
+					while (robots.get(current).canGO() != true && count < NUM_OF_ROBOTS)
+					{
+						count ++;
+						cycleRobots();
+					}
 					if (robots.get(current).canGO())
 					{
 						robots.get(current).updateGoal(a.getKey());
