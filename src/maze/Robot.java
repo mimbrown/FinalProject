@@ -217,10 +217,16 @@ public class Robot {
 	{
 		this.mine = mine;
 	}
+	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE,
+		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE, Maze.MARGIN +
 				currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
+	}
+	
+	public void draw(Graphics g, int x, int y) {
+		g.setColor(color);
+		g.fillOval(x, y, Cell.CELL_SIZE, Cell.CELL_SIZE);
 	}
 
 	public Map<String,Route> getKnownRoutes() {

@@ -19,16 +19,18 @@ public class Mine extends JPanel {
 	private int current;
 	private int onDeck;
 	private ButtonPanel panel;
-	
+	private Boolean isFinding;
+
 	public Mine(String fileName) {
 		robots = new ArrayList<Robot>();
 		maze = new Maze(fileName);
+		isFinding = false;
 		setLayout(null);
 		current = 0;
 		onDeck = 1;
-		
+
 	}
-	
+
 	public void loadMine() throws BadConfigFormatException {
 		maze.loadMaze();
 		createLabels();
@@ -42,40 +44,45 @@ public class Mine extends JPanel {
 			temp.giveMine(this);
 			robots.add(temp);
 		}
-		
-		
+
+
 	}
-	
+
 	public void giveButtons(ButtonPanel panels) {
-		panel = panels;
+		this.panel = panels;
 	}
-	
-	public void configureButtons() {
+
+	public void configureButtons(RobotRouteScreen routeInfo) {
 		Map<String, java.awt.Button> buttons = panel.getButtons();
 		for(Map.Entry<String,java.awt.Button> a : buttons.entrySet())
 		{
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
-					robots.get(current).updateGoal(a.getKey());
-					robots.get(current).askForRoute(robots.get(onDeck));
-					if(robots.get(current).checkForRoute(a.getKey()) != null)
-					{
-						robots.get(current).followRoute(maze);
-						robots.get(current).goHome(maze);
+					if(!isFinding) {
+						isFinding = true;
+						robots.get(current).updateGoal(a.getKey());
+						robots.get(current).askForRoute(robots.get(onDeck));
+						if(robots.get(current).checkForRoute(a.getKey()) != null)
+						{
+							robots.get(current).followRoute(maze);
+							robots.get(current).goHome(maze);
+						}
+						else
+						{
+							robots.get(current).findRoute(maze);
+							robots.get(current).goHome(maze);
+						}
+						robots.get(current).showCurrentRoute();
+						routeInfo.setRobotRoutes(current, robots.get(current).getKnownRoutes());
+						cycleRobots();
+						isFinding = false;
 					}
-					else
-					{
-						robots.get(current).findRoute(maze);
-						robots.get(current).goHome(maze);
-					}
-					robots.get(current).showCurrentRoute();
-					cycleRobots();
 				}
 			});
 		}
 	}
-	
+
 	public void cycleRobots() {
 		current++;
 		onDeck++;
@@ -88,7 +95,7 @@ public class Mine extends JPanel {
 			onDeck = 0;
 		}
 	}
-	
+
 	private void createLabels()
 	{
 		Set<String> caverns = maze.getCaverns();
@@ -107,7 +114,7 @@ public class Mine extends JPanel {
 					{
 						if(maze.getCellAt(ii,i).getName().equals(a))
 						{
-							
+
 							xpos = xpos + i * Cell.CELL_SIZE;
 							ypos = ypos + ii * Cell.CELL_SIZE;
 							count++;
@@ -121,20 +128,30 @@ public class Mine extends JPanel {
 			add(temp);
 		}
 	}
-	
+
 	public Maze getMaze() {
 		return maze;
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		maze.draw(g);
+		/*int counter = current + 1;
+		for(int i=0; i<NUM_OF_ROBOTS-1; i++) {
+			if(counter == NUM_OF_ROBOTS) {
+				counter = 0;
+			}
+			robots.get(counter).draw(g, (maze.getStartingLocationCol() + i)*Cell.CELL_SIZE,
+					Maze.MARGIN + maze.getStartingLocationRow() - Cell.CELL_SIZE);
+			counter++;
+		}
+		robots.get(current).draw(g);
+		*/
 		for(Robot r : robots) {
 			r.draw(g);
 		}
 	}
-	
-	// for testing purposes
+
 	public ArrayList<Robot> getRobots() {
 		return robots;
 	}

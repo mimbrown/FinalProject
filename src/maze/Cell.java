@@ -85,7 +85,7 @@ public class Cell {
 		else if(isCavern()) {
 			g.setColor(Color.white);
 		}
-		g.fillRect(col*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
+		g.fillRect(col*CELL_SIZE, Maze.MARGIN + row*CELL_SIZE, CELL_SIZE, CELL_SIZE);
 	}
 
 }
