@@ -223,9 +223,10 @@ public class Robot {
 	{
 		this.mine = mine;
 	}
+	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE,
+		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE, Maze.MARGIN +
 				currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
 	}
 

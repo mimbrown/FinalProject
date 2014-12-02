@@ -47,8 +47,9 @@ public class Mine extends JPanel {
 	}
 
 	public void giveButtons(ButtonPanel panels) {
-		panel = panels;
+		this.panel = panels;
 	}
+
 
 	public void configureButtons() {
 		Map<String, java.awt.Button> buttons = panel.getButtons();
@@ -140,7 +141,6 @@ public class Mine extends JPanel {
 		}
 	}
 
-	// for testing purposes
 	public ArrayList<Robot> getRobots() {
 		return robots;
 	}
