@@ -41,7 +41,4 @@ public class ButtonPanel extends JPanel {
 		return buttons;
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-	}
 }

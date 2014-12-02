@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 public class MineGUI extends JFrame {
 	private static Mine mine;
 	private ButtonPanel buttonPanel;
+	private SpeedControl speedControl;
 	private RobotRouteDialog routesDialog;
 	
 	
@@ -30,11 +31,13 @@ public class MineGUI extends JFrame {
 			System.exit(0);
 		}
 		buttonPanel= new ButtonPanel(mine);
-		setSize(800, 650);
+		speedControl = new SpeedControl();
+		setSize(800, 700);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(mine, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.LINE_END);
+		add(speedControl, BorderLayout.SOUTH);
 		mine.giveButtons(buttonPanel);
 		mine.configureButtons();
 		menuBar();

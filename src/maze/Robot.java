@@ -47,7 +47,6 @@ public class Robot {
 		recursion(maze, maze.getStartingLocationRow(), maze.getStartingLocationCol());
 		if(foundCavern) {
 			knownRoutes.put(goalCavern,currentRoute);
-			System.out.println("Found Cavern!");
 			return true;
 		}
 		return false;
@@ -62,6 +61,9 @@ public class Robot {
 		if(currentLocation.getName().equals(goalCavern) || foundCavern) {
 			foundCavern = true;
 			return;
+		}
+		else if(currentLocation.isCavern() && !knownRoutes.containsKey(currentLocation.getName())) {
+			knownRoutes.put(currentLocation.getName(), currentRoute.copy());
 		}
 
 		if (row < maze.getNumRows() - 1 && !foundCavern)
@@ -116,7 +118,6 @@ public class Robot {
 				}
 			}
 		}
-		visited.remove(currentLocation);
 	}
 
 	public void followRoute(Maze maze)
@@ -170,10 +171,6 @@ public class Robot {
 		{
 			knownRoutes.put(goalCavern, temp);
 		}
-		else
-		{
-			System.out.println("Robot did not have the route asked for.");
-		}
 	}
 
 	public void updateGoal(String newCavern) {
@@ -222,7 +219,8 @@ public class Robot {
 	}
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE, currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
+		g.fillOval(currentLocation.getCol() * Cell.CELL_SIZE,
+				currentLocation.getRow() * Cell.CELL_SIZE, Cell.CELL_SIZE, Cell.CELL_SIZE);
 	}
 
 	public Map<String,Route> getKnownRoutes() {
