@@ -30,7 +30,6 @@ public class MineGUI extends JFrame {
 			System.exit(0);
 		}
 		buttonPanel= new ButtonPanel(mine);
-		menuBar();
 		setSize(800, 650);
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,6 +37,7 @@ public class MineGUI extends JFrame {
 		add(buttonPanel, BorderLayout.LINE_END);
 		mine.giveButtons(buttonPanel);
 		mine.configureButtons();
+		menuBar();
 	}
 	
 	public void menuBar() {
@@ -56,7 +56,7 @@ public class MineGUI extends JFrame {
 		robotRoutes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				routesDialog = new RobotRouteDialog();
+				routesDialog = new RobotRouteDialog(mine.getRobots(), mine.getMaze().getCaverns());
 				// set the text field for each robot
 				for(int i = 0; i < mine.getRobots().size(); i++) 
 					routesDialog.setRobotRoutes(i,mine.getRobots().get(i).getKnownRoutes());
