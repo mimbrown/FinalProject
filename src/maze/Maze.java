@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 public class Maze {
-	public static final int MARGIN = 30;
+	public static final int MARGIN = 0;
 	
 	private Cell[][] maze;
 	private Set<String> cavernNames;

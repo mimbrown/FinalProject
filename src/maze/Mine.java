@@ -136,17 +136,6 @@ public class Mine extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		maze.draw(g);
-		/*int counter = current + 1;
-		for(int i=0; i<NUM_OF_ROBOTS-1; i++) {
-			if(counter == NUM_OF_ROBOTS) {
-				counter = 0;
-			}
-			robots.get(counter).draw(g, (maze.getStartingLocationCol() + i)*Cell.CELL_SIZE,
-					Maze.MARGIN + maze.getStartingLocationRow() - Cell.CELL_SIZE);
-			counter++;
-		}
-		robots.get(current).draw(g);
-		*/
 		for(Robot r : robots) {
 			r.draw(g);
 		}
