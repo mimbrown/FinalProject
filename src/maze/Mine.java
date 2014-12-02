@@ -19,16 +19,16 @@ public class Mine extends JPanel {
 	private int current;
 	private int onDeck;
 	private ButtonPanel panel;
-	
+
 	public Mine(String fileName) {
 		robots = new ArrayList<Robot>();
 		maze = new Maze(fileName);
 		setLayout(null);
 		current = 0;
 		onDeck = 1;
-		
+
 	}
-	
+
 	public void loadMine() throws BadConfigFormatException {
 		maze.loadMaze();
 		createLabels();
@@ -42,40 +42,46 @@ public class Mine extends JPanel {
 			temp.giveMine(this);
 			robots.add(temp);
 		}
-		
-		
+
+
 	}
-	
+
 	public void giveButtons(ButtonPanel panels) {
 		panel = panels;
 	}
-	
+
 	public void configureButtons() {
 		Map<String, java.awt.Button> buttons = panel.getButtons();
-		for(Map.Entry<String,java.awt.Button> a : buttons.entrySet())
+		for(final Map.Entry<String,java.awt.Button> a : buttons.entrySet())
 		{
 			a.getValue().addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e)
 				{
-					robots.get(current).updateGoal(a.getKey());
-					robots.get(current).askForRoute(robots.get(onDeck));
-					if(robots.get(current).checkForRoute(a.getKey()) != null)
+					if (robots.get(current).canGO())
 					{
-						robots.get(current).followRoute(maze);
-						robots.get(current).goHome(maze);
+						robots.get(current).updateGoal(a.getKey());
+						if (robots.get(onDeck).canGO())
+						{
+							robots.get(current).askForRoute(robots.get(onDeck));
+						}
+						if(robots.get(current).checkForRoute(a.getKey()) != null)
+						{
+							robots.get(current).followRoute(maze);
+							robots.get(current).goHome(maze);
+						}
+						else
+						{
+							robots.get(current).findRoute(maze);
+							robots.get(current).goHome(maze);
+						}
+						robots.get(current).showCurrentRoute();
 					}
-					else
-					{
-						robots.get(current).findRoute(maze);
-						robots.get(current).goHome(maze);
-					}
-					robots.get(current).showCurrentRoute();
 					cycleRobots();
 				}
 			});
 		}
 	}
-	
+
 	public void cycleRobots() {
 		current++;
 		onDeck++;
@@ -88,7 +94,7 @@ public class Mine extends JPanel {
 			onDeck = 0;
 		}
 	}
-	
+
 	private void createLabels()
 	{
 		Set<String> caverns = maze.getCaverns();
@@ -107,7 +113,7 @@ public class Mine extends JPanel {
 					{
 						if(maze.getCellAt(ii,i).getName().equals(a))
 						{
-							
+
 							xpos = xpos + i * Cell.CELL_SIZE;
 							ypos = ypos + ii * Cell.CELL_SIZE;
 							count++;
@@ -121,11 +127,11 @@ public class Mine extends JPanel {
 			add(temp);
 		}
 	}
-	
+
 	public Maze getMaze() {
 		return maze;
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 		maze.draw(g);
@@ -133,7 +139,7 @@ public class Mine extends JPanel {
 			r.draw(g);
 		}
 	}
-	
+
 	// for testing purposes
 	public ArrayList<Robot> getRobots() {
 		return robots;

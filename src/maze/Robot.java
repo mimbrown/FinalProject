@@ -158,6 +158,10 @@ public class Robot {
 			}
 		}
 	}
+	
+	public Boolean canGO() {
+		return canGo;
+	}
 
 	public Route checkForRoute(String name) {
 		if (knownRoutes.containsKey(name))
